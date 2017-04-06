@@ -1,13 +1,14 @@
 class Player:
 
-    __name = ""
-    __hand = []
-
     def __init__(self, name):
         self.__name = name
+        self.__hand = []
 
-    def hit(self, deck):
-        self.__hand.append(deck.draw())
+    def get_name(self):
+        return self.__name
+
+    def take(self, card):
+        self.__hand.append(card)
 
     def toString(self):
         txt = self.__name + ": "

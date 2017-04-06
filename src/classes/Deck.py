@@ -3,11 +3,11 @@ from .Card import Card
 
 
 class Deck:
-    __cards = []
 
     def __init__(self):
         suits = ("Heart", "Spade", "Diamond", "Club")
         values = ("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
+        self.__cards = []
 
         for suit in suits:
             for value in values:
@@ -17,7 +17,7 @@ class Deck:
         return len(self.__cards)
 
     def draw(self):
-        return self.__cards.pop(randint(0, self.get_count()))
+        return self.__cards.pop(randint(0, self.get_count()-1))
 
     def toString(self):
         for card in self.__cards:

@@ -2,13 +2,24 @@ from src.classes.Deck import Deck
 from src.classes.Player import Player
 
 deck = Deck()
-p1 = Player("Daniel")
+exposed = []
+players = [Player("Daniel"), Player("Breanne"), Player("Dealer")]
 
-p1.hit(deck)
-p1.hit(deck)
-print(deck.get_count())
+# Deal two cards to each player
+for x in range(2):
+    for player in players:
+        card = deck.draw()
 
-print(p1.toString())
+        # Add each dealt card to the known cards, except for the first dealer card as it is face down ass up
+        if player.get_name() != "Dealer" or x != 0:
+            exposed.append(card)
 
-deck.toString()
+        player.take(card)
+
+print(players[0].toString())
+print(players[1].toString())
+print(players[2].toString())
+
+
+#deck.toString()
 
