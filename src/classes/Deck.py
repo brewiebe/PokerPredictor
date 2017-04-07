@@ -7,11 +7,12 @@ class Deck:
     def __init__(self):
         suits = ("Heart", "Spade", "Diamond", "Club")
         values = ("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
+        int_values = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10)
         self.__cards = []
 
         for suit in suits:
-            for value in values:
-                self.__cards.append(Card(suit, value))
+            for x in range(len(values)):
+                self.__cards.append(Card(suit, values[x], int_values[x]))
 
     def get_count(self):
         return len(self.__cards)

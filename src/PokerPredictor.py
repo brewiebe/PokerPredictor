@@ -1,25 +1,21 @@
 from src.classes.Deck import Deck
 from src.classes.Player import Player
+from src.classes.Game import Game
+from src.classes.Predictor import Predictor
 
 deck = Deck()
-exposed = []
-players = [Player("Daniel"), Player("Breanne"), Player("Dealer")]
+players = [Player("Daniel", 0.25), Player("Breanne", 0.15), Player("Dealer", 0.10)]
 
-# Deal two cards to each player
-for x in range(2):
-    for player in players:
-        card = deck.draw()
-
-        # Add each dealt card to the known cards, except for the first dealer card as it is face down ass up
-        if player.get_name() != "Dealer" or x != 0:
-            exposed.append(card)
-
-        player.take(card)
+game = Game(players, deck)
+predictor = Predictor(game)
+game.start_game()
 
 print(players[0].toString())
+print(players[0].total())
+print(predictor.probablility_win(0))
 print(players[1].toString())
+print(predictor.probablility_win(1))
+print(players[1].total())
 print(players[2].toString())
-
-
-#deck.toString()
-
+print(predictor.probablility_win(2))
+print(players[2].total())
