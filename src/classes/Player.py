@@ -43,6 +43,12 @@ class Player:
                     total += 1
         return total
 
+    def get_aces(self):
+        num_aces = 0
+        for card in self.__hand:
+            if card.get_int_value == 1:
+                num_aces += 1
+        return num_aces
 
     def toString(self):
         txt = self.__name + ": "
