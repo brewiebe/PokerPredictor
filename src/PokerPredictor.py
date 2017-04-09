@@ -14,5 +14,5 @@ game.start_game()
 for x in range(len(players)):
     print(players[x].to_string())
     print(players[x].total())
-    print("Desired Hand:" + str(predictor.probability_win(players[x], 21)*100))
+    print("Desired Hand:" + str(predictor.probability_win(players[x], 19)*100))
     print("Bust Chance: " + str(predictor.probability_bust(players[x]) * 100))
