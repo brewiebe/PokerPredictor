@@ -2,14 +2,37 @@ class Predictor:
     def __init__(self, game):
         self.__game = game
 
+    def predict_winning_players(self, players, min_wanted):
+        max_win = -1000
+        winning_players = []
+        winning_player = None
+        for player in players:
+            probability_win = self.probability_win(player, min_wanted)
+
+            if 19 in player.total() or 20 in player.total():
+                probability_win += .5
+
+            if probability_win >= max_win:
+                max_win = probability_win
+                winning_player = player
+            elif probability_win == 100:
+                winning_players.append(player)
+
+        winning_players.append(winning_player)
+
+        return winning_players
+
+    def probability_win(self, player, min_wanted):
+        return self.probability_hand(player, min_wanted) - self.probability_bust(player)
+
     # Returns the probability of getting a hand in between min_wanted and 21
-    def probability_win(self, player, min_wanted=19, prob=0):
+    def probability_hand(self, player, min_wanted=19, prob=0):
 
         # Stop calculating if past 21 or if we have the desired hand
         if min_wanted > 21 or prob >= 1:
             return prob
         else:
-            return self.probability_win(player, min_wanted+1, prob+self.probability_hand(player, min_wanted))
+            return self.probability_hand(player, min_wanted + 1, prob + self.probability_hand(player, min_wanted))
 
     # Returns the probability of busting
     def probability_bust(self, player, prob=0, x=22):
