@@ -23,7 +23,13 @@ class Predictor:
         return winning_players
 
     def probability_win(self, player, min_wanted):
-        return self.probability_hand(player, min_wanted) - self.probability_bust(player)
+        prob_bust = self.probability_bust(player)
+        prob_hand = self.probability_hand(player, min_wanted)
+
+        if prob_bust > 0:
+            return prob_bust - prob_hand
+        else:
+            return prob_hand
 
     # Returns the probability of getting a hand in between min_wanted and 21
     def probability_hand(self, player, min_wanted=19, prob=0):
