@@ -16,6 +16,7 @@ for x in range(10):
     predictor = Predictor(game)
     game.start_game()
 
+    print("Players after first deal: ")
     for x in range(len(players)):
         print(players[x].to_string())
         print(players[x].total())
@@ -28,6 +29,7 @@ for x in range(10):
     for player in pred_winning_player:
         print(player.to_string())
 
+    print("Game is played out....")
     game.play_game(predictor)
 
     print("\n")
